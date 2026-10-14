@@ -1,0 +1,263 @@
+{
+  "site_title": "ephemera photo",
+  "author": "William Liao",
+  "tagline": "sights, sounds, smells, metaphors, emotions and other phenomena gently cupped and mediated through photography.",
+  "copyright": "All images and content copyright William Liao 2019+.",
+  "social": [
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/ephemera_photo/"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/william-liao/"
+    },
+    {
+      "name": "Medium",
+      "url": "http://willsblog.medium.com"
+    }
+  ],
+  "nav": [
+    "beings",
+    "settings",
+    "matcha-sketches",
+    "about",
+    "contact"
+  ],
+  "groups": [
+    {
+      "slug": "beings",
+      "title": "beings",
+      "series": [
+        "here",
+        "somewhere-else"
+      ]
+    },
+    {
+      "slug": "settings",
+      "title": "settings",
+      "series": [
+        "perturbed",
+        "unperturbed"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "slug": "here",
+      "title": "here",
+      "cover": "L1060421-nb 2.jpg",
+      "photos": [
+        "DSCF3667.jpg",
+        "L1060421-nb 2.jpg",
+        "DSCF3427fwt.jpg",
+        "DSCF2446wt.jpg",
+        "DSCF0118.jpeg",
+        "DSCF7649.jpeg",
+        "DSCF7664.jpeg",
+        "L1010688.jpeg",
+        "kid_sun_lake.jpg",
+        "IMG_0898.jpeg",
+        "IMG_0897.jpeg",
+        "IMG_0896.jpeg",
+        "gold_man.jpg",
+        "IMG_6241.jpeg",
+        "manwashingdogtamsuitttwtee.jpg",
+        "IMG_3516 copy.jpg",
+        "DSCF2657wt.jpg",
+        "DSCF2499.jpg",
+        "L1090744-3.jpg",
+        "L1090777.jpg",
+        "DSCF5171 2.jpeg",
+        "DSCF6373.jpeg",
+        "human_shadow_yosemite.jpg",
+        "market_vendor.jpg",
+        "L1100003-2.jpg",
+        "DSCF5129.jpeg",
+        "DSCF5153.jpeg",
+        "DSCF7631.jpeg",
+        "R0002305.jpeg",
+        "IMG_6580 copy.jpg",
+        "L1050794-2.jpg",
+        "L1090990-2.jpg",
+        "L1090801.jpg",
+        "L1090992.jpg",
+        "DSCF6133.jpeg",
+        "R0000909.jpeg",
+        "DSCF7768.jpeg",
+        "R0000995.jpeg",
+        "R0000744.jpeg"
+      ]
+    },
+    {
+      "slug": "somewhere-else",
+      "title": "somewhere else",
+      "cover": "R0001115.jpeg",
+      "photos": [
+        "R0001115.jpeg",
+        "R0000801.jpeg",
+        "R0000897.jpeg",
+        "chef_smoking.jpeg",
+        "R0001045.jpeg",
+        "men_down_phone.jpg",
+        "R0000783.jpeg",
+        "R0001352.jpeg",
+        "DSCF3133.jpg",
+        "L1100040.jpg",
+        "IMG_0939.jpeg"
+      ]
+    },
+    {
+      "slug": "perturbed",
+      "title": "perturbed",
+      "cover": "DSCF0360.jpg",
+      "photos": [
+        "DSCF0360.jpg",
+        "L1090721.jpg",
+        "L1090940.jpg",
+        "L1090046.jpg",
+        "sf_musem.jpg",
+        "DSCF5768.jpeg",
+        "R0001569.jpeg",
+        "DSCF2111.jpg",
+        "R0001367.jpeg",
+        "R0001180.jpeg",
+        "L1080524.jpg",
+        "19A8BFCD-A0C2-47A6-A179-5B4559357C17.jpeg",
+        "DSCF0182.jpeg",
+        "DSCF9996.jpeg",
+        "IMG_8161.jpeg",
+        "IMG_8154.jpeg",
+        "IMG_8155.jpeg",
+        "IMG_1111.jpeg",
+        "IMG_7355.jpeg",
+        "IMG_7297.jpeg",
+        "R0000077.jpeg",
+        "DSCF9969.jpeg",
+        "DSCF7054.jpeg",
+        "R0001591.jpeg",
+        "R0001618.jpeg",
+        "R0000779.jpeg",
+        "R0000781.jpeg",
+        "L1100590.jpg",
+        "R0001174.jpeg",
+        "DSCF6369.jpeg",
+        "image.jpg",
+        "R0000867.jpeg",
+        "IMG_2959.jpeg"
+      ]
+    },
+    {
+      "slug": "unperturbed",
+      "title": "unperturbed",
+      "cover": "L1010866.JPG",
+      "photos": [
+        "L1010866.JPG",
+        "L1010878.JPG",
+        "L1080678.jpg",
+        "L1080747.jpg",
+        "L1080655.jpg",
+        "L1080663.jpg",
+        "L1080882.jpg",
+        "L1080692.jpg",
+        "L1080778.jpg",
+        "L1080979.jpg",
+        "L1080874 2.jpg",
+        "DSCF9868.jpeg",
+        "L1080609.jpg",
+        "R0002062.jpg",
+        "IMG_0315w.jpg",
+        "DSCF2868w2e.jpg",
+        "R0002385.jpeg",
+        "R0002210.jpeg",
+        "DSCF7629.jpeg",
+        "R0002294.jpeg",
+        "R0002216.jpeg",
+        "IMG_0892.jpeg",
+        "DSCF0137.jpeg",
+        "DSCF0046.jpeg",
+        "R0002288.jpeg",
+        "DSCF7642.jpeg",
+        "L1110333.jpeg",
+        "DSCF0038.jpeg",
+        "DSCF5760.jpeg",
+        "DSCF3431.jpg",
+        "L1080971.jpg",
+        "L1080921.jpg"
+      ]
+    },
+    {
+      "slug": "matcha-sketches",
+      "title": "matcha creations",
+      "cover": "moonfield.jpeg",
+      "photos": [
+        "moonfield.jpeg",
+        "IMG_7775.jpeg",
+        "ceci-nest-pas-un-matcha copy.jpg",
+        "IMG_7691.jpeg",
+        "R0002720.jpeg",
+        "R0002669.jpeg",
+        "R0000079.jpeg",
+        "IMG_7451.jpeg",
+        "IMG_7748.jpeg",
+        "IMG_7660.jpeg",
+        "IMG_7724.jpeg",
+        "IMG_7621.jpeg",
+        "IMG_7957.jpeg",
+        "R0002730.jpeg",
+        "9750C443-C7D2-490E-AE70-4105185B3488.jpeg",
+        "R0002726.jpeg",
+        "D2A6618D-55F8-413C-884F-DECC5B4399B7.jpeg",
+        "67356E4E-9D16-4252-926C-57842D889B19.jpeg",
+        "R0002564.jpeg",
+        "R0002605.jpeg",
+        "R0002555.jpeg",
+        "R0002591.jpeg",
+        "R0002579.jpeg",
+        "R0002609.jpeg",
+        "R0002561.jpeg",
+        "R0002541.jpeg",
+        "R0002629.jpeg",
+        "R0002634.jpeg",
+        "R0002676.jpeg",
+        "IMG_7374.jpeg",
+        "R0002650.jpeg",
+        "R0002482.jpeg",
+        "R0002476.jpeg",
+        "R0002480.jpeg",
+        "R0002490.jpeg",
+        "R0002543.jpeg",
+        "R0002403.jpeg",
+        "R0002481.jpeg",
+        "R0002476 (2).jpeg",
+        "R0002541 (2).jpeg",
+        "R0002555 (2).jpeg",
+        "R0002485.jpeg",
+        "R0002557.jpeg",
+        "R0002561 (2).jpeg",
+        "L1020220.jpeg",
+        "IMG_7841.jpeg",
+        "matcha-copies.jpeg"
+      ]
+    }
+  ],
+  "about": {
+    "title": "About",
+    "portrait": "Adjustments.jpeg",
+    "paragraphs": [
+      "William Liao is a 2nd generation Taiwanese-American passionate about using photography as a medium to experience and communicate the sometimes beautiful, often random miscellany of life.",
+      "Concepts & imagery documented are intended to have a bidirectional relationship: at moments imagery are mediated through ideas, sometimes ideas through functional aesthetics",
+      "Interested in connecting? Please feel free to reach out on LinkedIn!"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "paragraphs": [
+      "Open to collaborations that use photography to motivate action and social benefit.",
+      "Please feel free to reach out over LinkedIn or Instagram."
+    ]
+  },
+  "redirects": {
+    "contact-1": "contact"
+  }
+}
