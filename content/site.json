@@ -6,24 +6,28 @@
   "social": [
     {
       "name": "Instagram",
+      "icon": "instagram",
       "url": "https://www.instagram.com/ephemera_photo/"
     },
     {
       "name": "LinkedIn",
+      "icon": "linkedin",
       "url": "https://www.linkedin.com/in/william-liao/"
     },
     {
-      "name": "Medium",
-      "url": "http://willsblog.medium.com"
+      "name": "Substack",
+      "icon": "substack",
+      "url": "https://substack.com/@liao"
     }
   ],
   "nav": [
+    "about",
+    "contact",
     "beings",
     "settings",
-    "matcha-sketches",
-    "about",
-    "contact"
+    "matcha-sketches"
   ],
+  "home": "here",
   "groups": [
     {
       "slug": "beings",
@@ -46,7 +50,6 @@
     {
       "slug": "here",
       "title": "here",
-      "cover": "L1060421-nb 2.jpg",
       "photos": [
         "DSCF3667.jpg",
         "L1060421-nb 2.jpg",
@@ -92,7 +95,6 @@
     {
       "slug": "somewhere-else",
       "title": "somewhere else",
-      "cover": "R0001115.jpeg",
       "photos": [
         "R0001115.jpeg",
         "R0000801.jpeg",
@@ -110,7 +112,6 @@
     {
       "slug": "perturbed",
       "title": "perturbed",
-      "cover": "DSCF0360.jpg",
       "photos": [
         "DSCF0360.jpg",
         "L1090721.jpg",
@@ -150,7 +151,6 @@
     {
       "slug": "unperturbed",
       "title": "unperturbed",
-      "cover": "L1010866.JPG",
       "photos": [
         "L1010866.JPG",
         "L1010878.JPG",
@@ -189,7 +189,6 @@
     {
       "slug": "matcha-sketches",
       "title": "matcha creations",
-      "cover": "moonfield.jpeg",
       "photos": [
         "moonfield.jpeg",
         "IMG_7775.jpeg",
@@ -251,7 +250,7 @@
     ]
   },
   "contact": {
-    "title": "Contact",
+    "title": "Contact Us",
     "paragraphs": [
       "Open to collaborations that use photography to motivate action and social benefit.",
       "Please feel free to reach out over LinkedIn or Instagram."

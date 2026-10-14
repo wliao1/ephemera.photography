@@ -1,7 +1,33 @@
 # ephemera.photography — new site design
 
 Date: 2026-10-14
-Status: draft for approval
+Status: approved; revised the same day (see below)
+
+## Revision: mirror the original layout
+
+After seeing the "gallery wall" version live, the user asked to mimic the
+Squarespace layout instead and to replace the Medium link with Substack
+(https://substack.com/@liao). What changed from the sections below:
+
+- Left sidebar on every page: the gray EP logo with "EPHEMERA PHOTO"
+  (`photo_on_website_2.png`, trimmed), the tagline + copyright in small gray
+  text, and the menu: about, contact, beings (folder: here, somewhere else),
+  settings (folder: perturbed, unperturbed), matcha creations. Folders open
+  around the current page; the current page is gray.
+- Home page is the "here" gallery (as on Squarespace). `/beings/` and
+  `/settings/` redirect to their first series, as Squarespace folders did.
+- Galleries: masonry columns (up to 3, at least 300 px wide, 10 px gaps),
+  each photo placed in the shortest column, in the original order.
+- Clicking a photo shows it alone on white in the content area with
+  "PREV / NEXT" and "SHOW THUMBNAILS" at the bottom right; arrows, swipe,
+  Esc and Back work; `#N` in the address opens photo N.
+- About: portrait left, text right. Contact: "Contact Us", text centred,
+  no form. Social icons (Instagram, LinkedIn, Substack) centred under every
+  page.
+- Phone (≤640 px): logo, tagline, a "MENU" toggle, then one column.
+- Font: Figtree stands in for Proxima Nova (Adobe-licensed).
+- Removed: cover tiles, group pages, the dark full-screen viewer, the
+  footer, Cormorant/Inter fonts and the off-white background.
 
 ## Goal
 

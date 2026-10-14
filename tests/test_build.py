@@ -36,10 +36,11 @@ class Fixture(unittest.TestCase):
         make_photo(photos / "b1.jpg", (500, 500))
         make_photo(photos / "p.jpg", (1600, 2000))
         make_photo(self.content / "logo.png", (64, 64))
+        make_photo(self.content / "favicon.png", (32, 32))
         self.assets = self.tmp / "assets"
         self.assets.mkdir()
         (self.assets / "style.css").write_text("body{}")
-        (self.assets / "viewer.js").write_text("")
+        (self.assets / "gallery.js").write_text("")
         self.out = self.tmp / "docs"
 
     def tearDown(self):
@@ -75,11 +76,12 @@ class ProcessImageTest(Fixture):
 SITE = {
     "site_title": "test site", "author": "Test Person", "tagline": "a tagline",
     "copyright": "(c) test",
-    "social": [{"name": "Instagram", "url": "https://instagram.com/x"}],
-    "nav": ["g", "b", "about", "contact"],
+    "social": [{"name": "Instagram", "icon": "instagram", "url": "https://instagram.com/x"}],
+    "nav": ["about", "contact", "g", "b"],
+    "home": "a",
     "groups": [{"slug": "g", "title": "group g", "series": ["a"]}],
     "series": [
-        {"slug": "a", "title": "series a", "cover": "a2.png", "photos": ["a1.jpg", "a2.png"]},
+        {"slug": "a", "title": "series a", "photos": ["a1.jpg", "a2.png"]},
         {"slug": "b", "title": "series b", "photos": ["b1.jpg"]},
     ],
     "about": {"title": "About", "portrait": "p.jpg", "paragraphs": ["hello"]},
@@ -104,25 +106,50 @@ class BuildTest(Fixture):
         self.assertEqual(self.run_build(), {"a": 2, "b": 1})
         for rel in ["index.html", "g/index.html", "a/index.html", "b/index.html",
                     "about/index.html", "contact/index.html", "old-contact/index.html",
-                    "404.html", ".nojekyll", "assets/style.css", "assets/viewer.js",
-                    "assets/logo.png"]:
+                    "404.html", ".nojekyll", "assets/style.css", "assets/gallery.js",
+                    "assets/logo.png", "assets/favicon.png"]:
             self.assertTrue((self.out / rel).is_file(), rel)
 
-    def test_series_page_lists_photos_in_order_with_viewer(self):
+    def test_series_page_lists_photos_in_order_with_gallery_script(self):
         self.run_build()
         page = (self.out / "a" / "index.html").read_text()
         self.assertEqual(page.count('class="ph"'), 2)
         self.assertLess(page.index("01-a1-800.jpg"), page.index("02-a2-800.jpg"))
         self.assertIn('data-full="../img/a/01-a1-2000.jpg"', page)
-        self.assertIn("assets/viewer.js", page)
+        self.assertIn("assets/gallery.js", page)
 
-    def test_home_uses_cover_and_marks_current_section(self):
+    def test_home_page_is_the_home_series(self):
         self.run_build()
         home = (self.out / "index.html").read_text()
-        self.assertIn('src="img/a/02-a2-2000.jpg"', home)  # wide first tile, chosen cover
-        self.assertIn('href="g/"', home)
-        page = (self.out / "a" / "index.html").read_text()
-        self.assertIn('href="../g/" class="on"', page)      # series a belongs to group g
+        self.assertEqual(home.count('class="ph"'), 2)
+        self.assertIn('src="img/a/01-a1-800.jpg"', home)
+        self.assertIn('data-full="img/a/01-a1-2000.jpg"', home)
+        self.assertIn('href="a/" class="on"', home)
+
+    def test_folders_open_only_around_the_current_page(self):
+        self.run_build()
+        page_a = (self.out / "a" / "index.html").read_text()
+        self.assertIn('<details class="folder" open><summary>group g</summary>', page_a)
+        self.assertIn('href="../a/" class="on"', page_a)
+        page_b = (self.out / "b" / "index.html").read_text()
+        self.assertIn('<details class="folder"><summary>group g</summary>', page_b)
+
+    def test_group_address_redirects_to_its_first_series(self):
+        self.run_build()
+        self.assertIn("url=../a/", (self.out / "g" / "index.html").read_text())
+
+    def test_social_icons_on_every_page(self):
+        self.run_build()
+        for rel in ["index.html", "a/index.html", "about/index.html", "contact/index.html"]:
+            page = (self.out / rel).read_text()
+            self.assertIn('aria-label="Instagram"', page, rel)
+            self.assertIn("<svg", page, rel)
+
+    def test_unknown_home_is_reported(self):
+        self.site["home"] = "nope"
+        self.save_site()
+        with self.assertRaisesRegex(ValueError, "home"):
+            self.run_build()
 
     def test_every_local_link_resolves(self):
         self.run_build()
@@ -148,7 +175,7 @@ class BuildTest(Fixture):
 
     def test_rebuild_drops_removed_pages_and_images(self):
         self.run_build()
-        self.site["series"].pop()
+        self.site["series"].pop()  # series b
         self.site["nav"].remove("b")
         self.save_site()
         self.run_build()

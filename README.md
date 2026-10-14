@@ -12,7 +12,10 @@ Needs Python 3.8+ and Pillow (`pip install Pillow`).
 
 ## Change the site
 
-- Text, menu, series order and cover photos: `content/site.json`.
+- Text, menu, series and photo order, the home-page series and the social
+  icons (`instagram`, `linkedin`, `substack`): `content/site.json`.
+- Look: `assets/style.css` (mirrors the old Squarespace layout); gallery
+  columns and the one-photo view: `assets/gallery.js`.
 - Add a photo: put the file in `content/photos/`, add its file name to the
   series' `photos` list in `site.json`, run `python3 build.py`, commit.
 - Photos are resized (800 px and 2000 px) and camera metadata is removed
