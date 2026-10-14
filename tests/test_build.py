@@ -10,6 +10,7 @@ from PIL import Image
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 import build  # noqa: E402
+import check_site  # noqa: E402
 
 
 def make_photo(path, size, mode="RGB", camera=False):
@@ -69,6 +70,96 @@ class ProcessImageTest(Fixture):
         first = dest.stat().st_mtime_ns
         self.assertEqual(build.process_image(src, dest, 100), (100, 100))
         self.assertEqual(dest.stat().st_mtime_ns, first)
+
+
+SITE = {
+    "site_title": "test site", "author": "Test Person", "tagline": "a tagline",
+    "copyright": "(c) test",
+    "social": [{"name": "Instagram", "url": "https://instagram.com/x"}],
+    "nav": ["g", "b", "about", "contact"],
+    "groups": [{"slug": "g", "title": "group g", "series": ["a"]}],
+    "series": [
+        {"slug": "a", "title": "series a", "cover": "a2.png", "photos": ["a1.jpg", "a2.png"]},
+        {"slug": "b", "title": "series b", "photos": ["b1.jpg"]},
+    ],
+    "about": {"title": "About", "portrait": "p.jpg", "paragraphs": ["hello"]},
+    "contact": {"title": "Contact", "paragraphs": ["write"]},
+    "redirects": {"old-contact": "contact"},
+}
+
+
+class BuildTest(Fixture):
+    def setUp(self):
+        super().setUp()
+        self.site = json.loads(json.dumps(SITE))
+        self.save_site()
+
+    def save_site(self):
+        (self.content / "site.json").write_text(json.dumps(self.site))
+
+    def run_build(self):
+        return build.build(self.content, self.assets, self.out)
+
+    def test_writes_every_page(self):
+        self.assertEqual(self.run_build(), {"a": 2, "b": 1})
+        for rel in ["index.html", "g/index.html", "a/index.html", "b/index.html",
+                    "about/index.html", "contact/index.html", "old-contact/index.html",
+                    "404.html", ".nojekyll", "assets/style.css", "assets/viewer.js",
+                    "assets/logo.png"]:
+            self.assertTrue((self.out / rel).is_file(), rel)
+
+    def test_series_page_lists_photos_in_order_with_viewer(self):
+        self.run_build()
+        page = (self.out / "a" / "index.html").read_text()
+        self.assertEqual(page.count('class="ph"'), 2)
+        self.assertLess(page.index("01-a1-800.jpg"), page.index("02-a2-800.jpg"))
+        self.assertIn('data-full="../img/a/01-a1-2000.jpg"', page)
+        self.assertIn("assets/viewer.js", page)
+
+    def test_home_uses_cover_and_marks_current_section(self):
+        self.run_build()
+        home = (self.out / "index.html").read_text()
+        self.assertIn('src="img/a/02-a2-2000.jpg"', home)  # wide first tile, chosen cover
+        self.assertIn('href="g/"', home)
+        page = (self.out / "a" / "index.html").read_text()
+        self.assertIn('href="../g/" class="on"', page)      # series a belongs to group g
+
+    def test_every_local_link_resolves(self):
+        self.run_build()
+        self.assertEqual(check_site.check(self.out, self.site), [])
+
+    def test_checker_reports_broken_and_absolute_links(self):
+        self.run_build()
+        page = self.out / "b" / "index.html"
+        page.write_text(page.read_text() + '<a href="../nowhere/">x</a><a href="/about/">y</a>')
+        problems = check_site.check(self.out, self.site)
+        self.assertTrue(any("broken link ../nowhere/" in p for p in problems), problems)
+        self.assertTrue(any("absolute link /about/" in p for p in problems), problems)
+
+    def test_redirect_points_at_new_page(self):
+        self.run_build()
+        self.assertIn("url=../contact/", (self.out / "old-contact" / "index.html").read_text())
+
+    def test_missing_photo_is_reported(self):
+        self.site["series"][1]["photos"].append("nope.jpg")
+        self.save_site()
+        with self.assertRaisesRegex(ValueError, "nope.jpg"):
+            self.run_build()
+
+    def test_rebuild_drops_removed_pages_and_images(self):
+        self.run_build()
+        self.site["series"].pop()
+        self.site["nav"].remove("b")
+        self.save_site()
+        self.run_build()
+        self.assertFalse((self.out / "b").exists())
+        self.assertFalse((self.out / "img" / "b").exists())
+
+    def test_domain_writes_cname(self):
+        self.site["domain"] = "example.com"
+        self.save_site()
+        self.run_build()
+        self.assertEqual((self.out / "CNAME").read_text().strip(), "example.com")
 
 
 if __name__ == "__main__":
