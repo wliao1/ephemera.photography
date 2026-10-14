@@ -22,7 +22,6 @@
   ],
   "nav": [
     "about",
-    "contact",
     "beings",
     "settings",
     "matcha-sketches"
@@ -249,14 +248,7 @@
       "Interested in connecting? Please feel free to reach out on LinkedIn!"
     ]
   },
-  "contact": {
-    "title": "Contact Us",
-    "paragraphs": [
-      "Open to collaborations that use photography to motivate action and social benefit.",
-      "Please feel free to reach out over LinkedIn or Instagram."
-    ]
-  },
   "redirects": {
-    "contact-1": "contact"
+    "contact-1": "about"
   }
 }

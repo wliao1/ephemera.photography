@@ -90,7 +90,7 @@ def validate(site: dict, content_dir: Path) -> None:
     """Raise ValueError listing every photo or page site.json names that doesn't exist."""
     photos = content_dir / "photos"
     slugs = {s["slug"] for s in site["series"]}
-    pages = slugs | {g["slug"] for g in site["groups"]} | {"about", "contact"}
+    pages = slugs | {g["slug"] for g in site["groups"]} | {"about"} | ({"contact"} if "contact" in site else set())
     problems = []
     for s in site["series"]:
         problems += [f"series {s['slug']}: missing photo {n}" for n in s["photos"] if not (photos / n).is_file()]
@@ -297,7 +297,8 @@ def build(content_dir: Path = ROOT / "content", assets_dir: Path = ROOT / "asset
     for g in site["groups"]:  # like Squarespace folders: the folder's address opens its first series
         write(out_dir / g["slug"] / "index.html", redirect_page(g["series"][0]))
     write(out_dir / "about" / "index.html", about_page(site, portrait))
-    write(out_dir / "contact" / "index.html", contact_page(site))
+    if "contact" in site:  # optional page
+        write(out_dir / "contact" / "index.html", contact_page(site))
     for old, new in site.get("redirects", {}).items():
         write(out_dir / old / "index.html", redirect_page(new))
     write(out_dir / "404.html", NOT_FOUND)

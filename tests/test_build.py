@@ -145,6 +145,17 @@ class BuildTest(Fixture):
             self.assertIn('aria-label="Instagram"', page, rel)
             self.assertIn("<svg", page, rel)
 
+    def test_contact_page_is_optional(self):
+        del self.site["contact"]
+        self.site["nav"].remove("contact")
+        self.site["redirects"] = {"old-contact": "about"}
+        self.save_site()
+        self.run_build()
+        self.assertFalse((self.out / "contact").exists())
+        self.assertNotIn("contact/", (self.out / "index.html").read_text())
+        self.assertIn("url=../about/", (self.out / "old-contact" / "index.html").read_text())
+        self.assertEqual(check_site.check(self.out, self.site), [])
+
     def test_unknown_home_is_reported(self):
         self.site["home"] = "nope"
         self.save_site()

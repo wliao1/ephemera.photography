@@ -28,6 +28,9 @@ Squarespace layout instead and to replace the Medium link with Substack
 - Font: Figtree stands in for Proxima Nova (Adobe-licensed).
 - Removed: cover tiles, group pages, the dark full-screen viewer, the
   footer, Cormorant/Inter fonts and the off-white background.
+- Later the same day: the contact page was removed at the user's request.
+  The menu is about, beings, settings, matcha creations; the old Squarespace
+  address `/contact-1` redirects to the about page (it has the social links).
 
 ## Goal
 
